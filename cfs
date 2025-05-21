@@ -1,6 +1,6 @@
 -- Configure with getgenv
 getgenv().SpeedSettings = getgenv().SpeedSettings or {
-    Enabled = false,   -- Toggle true/false to turn speed on or off
+    Enabled = true,   -- Toggle true/false to turn speed on or off
     Speed = 1        -- How fast the character moves
 }
 
