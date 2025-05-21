@@ -1,0 +1,23 @@
+-- Configure with getgenv
+getgenv().SpeedSettings = getgenv().SpeedSettings or {
+    Enabled = false,   -- Toggle true/false to turn speed on or off
+    Speed = 1        -- How fast the character moves
+}
+
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local lp = Players.LocalPlayer
+
+spawn(function()
+    while getgenv().SpeedSettings.Enabled do
+        local char = lp.Character
+        if char and char:FindFirstChild("HumanoidRootPart") and char:FindFirstChild("Humanoid") then
+            local root = char.HumanoidRootPart
+            local moveDir = char.Humanoid.MoveDirection
+            if moveDir.Magnitude > 0 then
+                root.CFrame = root.CFrame + moveDir * getgenv().SpeedSettings.Speed
+            end
+        end
+        RunService.Stepped:Wait()
+    end
+end)
